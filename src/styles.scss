@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~fontawesome-4.7/css/font-awesome.min.css";
+
+body {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.page {
+  width: 21cm;
+  height: 29.7cm;
+  border: 1px solid #ccc;
+  color: gray;
+}
+
+.text-dark {
+  color: #000000 !important;
+  font-weight: bold;
+}
+
+.chart-label {
+  position: absolute;
+  left: -8px;
+  top: -12px;
+  font-size: 13px;
+}
+
+@media print {
+  .page {
+    border: 0px solid transparent !important;
+  }
+
+  .hide-on-print {
+    display: none !important;
+  }
+}
+
+.alert-info {
+  font-size: 1.2rem;
+}
+
+/* @media print {
+  body{
+      width: 21cm;
+      height: 29.7cm;
+      margin: 30mm 45mm 30mm 45mm;
+ }
+} */
