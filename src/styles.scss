@@ -12,10 +12,26 @@ body {
 }
 
 .page {
-  width: 21cm;
+  /*  width: 21cm;
   height: 29.7cm;
-  border: 1px solid #ccc;
+  height: 300.8mm;
+  */
+  height: 1139px;
+  width: 210mm;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   color: gray;
+  &:first-child{
+    margin-top: 80px;
+  }
+  /* &:nth-child(even){
+    background-color: red;
+  }
+  &:nth-child(odd){
+    background-color: green;
+  } */
 }
 
 .text-dark {

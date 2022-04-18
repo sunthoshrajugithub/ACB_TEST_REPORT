@@ -3,16 +3,55 @@
 >
   <div class="container-fluid">
     <a class="navbar-brand">ACB-Test-Report</a>
-    <input hidden #fileUpload type="file" (change)="onFileChange($event)" />
+    <input
+      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+      hidden
+      #fileUpload
+      type="file"
+      (change)="onFileChange($event)"
+    />
     <a (click)="fileUpload.click()" class="btn btn-outline-light">Import</a>
   </div>
 </nav>
 
+<div class="mt-5 pt-5 w-100" *ngIf="dataString?.length === 0">
+  <div class="alert alert-warning shadow-sm" role="alert">
+    <h4 class="alert-heading">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="currentColor"
+        class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
+        viewBox="0 0 16 16"
+        role="img"
+        aria-label="Warning:"
+      >
+        <path
+          d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+        />
+      </svg>
+      No Information to show!
+    </h4>
+    <p>
+      Click top right cornor
+      <a (click)="fileUpload.click()" role="button" class="alert-link me-1"
+        >Import</a
+      >
+      button to
+      <a (click)="fileUpload.click()" role="button" class="alert-link me-1">
+        import</a
+      >
+      excel file
+    </p>
+  </div>
+</div>
+
 <ng-container *ngFor="let acbData of dataString; let ind = index">
   <!-- <h4 class="hide-on-print text-muted mt-3 text-center">{{ acbData["Customer "] }}</h4> -->
-  <div class="page mt-2">
-    <h6 class="hide-on-print text-center border-bottom pb-2">Page-1</h6>
-    <div class="row mt-3">
+  <div class="page mt-0">
+    <!-- <h6 class="hide-on-print text-center border-bottom pb-2">Page-1</h6> -->
+    <div class="row mt-0">
       <!-- *************************** First Page *************************** -->
       <div class="d-flex justify-content-between px-4 mb-0">
         <img src="./assets/logo.png" class="mt-3 ms-3" style="width: 200px" />
@@ -95,7 +134,7 @@
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Z Options</p>
-          <p class="m-0 p-0 mb-2" style="width: 140px">
+          <p class="m-0 p-0 mb-2 col">
             : <span class="text-dark">{{ acbData["Z-Options"] }}</span>
           </p>
         </div>
@@ -213,7 +252,7 @@
           <p class="m-0 p-0 mb-2" style="width: 300px">
             Short Time - Tripping <code>I<sub>sd</sub></code> (Short Circuit)
           </p>
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 175px">
             :
             <span class="text-dark"
               >{{ acbData["Short Time Isd"] }} x {{ acbData["In"] }} =
@@ -358,29 +397,30 @@
       <!-- *************************** First Page *************************** -->
     </div>
   </div>
-  <div class="page mt-2">
-    <h6 class="hide-on-print text-center border-bottom pb-2">Page-2</h6>
-    <div class="row mt-5">
+  <div class="page mt-0">
+    <div class="row mt-0">
       <!-- *************************** Second Page *************************** -->
       <div class="col-12 d-flex align-items-center d-flex flex-column">
-        <p class="fw-bold w-100 text-end pt-3">ID No : 123456789123456789</p>
+        <p class="fw-bold w-100 text-end pt-3 pe-4">
+          ID No : {{ acbData["ID no."] }}
+        </p>
         <h4 class="mb-3 w-100 mb-3 alert alert-info py-2">
           <i class="fa fa-cogs me-2"></i>It's about mechanism
         </h4>
       </div>
       <div class="col-6 ps-5">
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">Mechanical Interlock</p>
+          <p class="m-0 p-0 mb-2" style="width: 175px">Mechanical Interlock</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{ acbData["Mechanical Interlock"] }}</span>
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 175px">
             Contact Erosion Indicator
           </p>
-          <p class="m-0 p-0 mb-2" style="width: 140px">
+          <p class="m-0 p-0 mb-2 col">
             :
             <span class="text-dark">{{
               acbData["Contact Erosion Indicator"]
@@ -388,28 +428,21 @@
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">Lamination Contacts</p>
-          <p class="m-0 p-0 mb-2" style="width: 140px">
-            :
-            <span class="text-dark">{{ acbData["Lamination Contacts"] }}</span>
-          </p>
-        </div>
-        <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">Racking handle</p>
+          <p class="m-0 p-0 mb-2" style="width: 175px">Racking handle</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{ acbData["Racking Handle"] }}</span>
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">Racking Mechanism</p>
-          <p class="m-0 p-0 mb-2" style="width: 140px">
+          <p class="m-0 p-0 mb-2" style="width: 175px">Racking Mechanism</p>
+          <p class="m-0 p-0 mb-2 col">
             :
             <span class="text-dark">{{ acbData["Racking Mechanism "] }}</span>
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 175px">
             Auxiliary Contact Block
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
@@ -418,6 +451,12 @@
               acbData["Auxiliary Contact Block"]
             }}</span>
           </p>
+        </div>
+        <div class="d-flex">
+          <p class="m-0 p-0 mb-2" style="width: 130px">Lamination Contacts</p>
+          <p class="m-0 p-0 mb-2 col">:<span class="text-dark">
+            {{ acbData["Lamination Contacts"] }}
+          </span></p>
         </div>
       </div>
       <div class="col-6 ps-5">
@@ -470,7 +509,7 @@
       </div>
       <div class="col-6 ps-5">
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 240px">
             Spring Charging - Manual
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
@@ -481,7 +520,7 @@
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 240px">
             Spring Charging - Motorl
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
@@ -492,7 +531,7 @@
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 240px">
             Breaker Operations - Manual
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
@@ -503,7 +542,7 @@
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 240px">
             Breaker Operations - Electrical
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
@@ -514,7 +553,7 @@
           </p>
         </div>
         <div class="d-flex">
-          <p class="m-0 p-0 mb-2" style="width: 220px">
+          <p class="m-0 p-0 mb-2" style="width: 240px">
             Ready to Close Interlock
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
@@ -578,13 +617,10 @@
             </div>
           </div>
           <p
-            style="
-              width: 90%;
-              font-size: 20px;
-            "
+            style="width: 90%; font-size: 20px"
             class="text-center text-danger fw-bold"
           >
-            Overall Breaker Healthiness <br>
+            Overall Breaker Healthiness <br />
             {{ acbData["Overall Breaker Healthiness"] * 100 | number }}%
           </p>
         </div>
@@ -705,6 +741,21 @@
     </div>
   </div>
 </ng-container>
+
+<div
+  style="background-color: rgba(0, 0, 0, 0.3)"
+  *ngIf="inProgress"
+  class="position-fixed top-0 start-0 vw-100 vh-100 fixed-top"
+>
+  <div
+    class="w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+  >
+    <div class="spinner-border text-light" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <h6 class="text-white">Please wait...</h6>
+  </div>
+</div>
 
 <!-- <div
   class="card fixed-bottom shadow mb-3 ms-auto d-none"
