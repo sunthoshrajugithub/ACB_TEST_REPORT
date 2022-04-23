@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "acb-test-report:build:production",
+            "firebaseProject": "acb-test-report",
+            "firebaseHostingSite": "acb-test-report"
+          }
         }
       }
     }

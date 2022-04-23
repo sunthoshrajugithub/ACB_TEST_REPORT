@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "acb-test-report"
+  },
+  "targets": {
+    "acb-test-report": {
+      "hosting": {
+        "acb-test-report": [
+          "acb-test-report"
+        ]
+      }
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -88,10 +89,22 @@ export class AppComponent {
   ];
   inProgress = false;
 
-  constructor() {
+  constructor(private firestore: Firestore) {
     const acbTestReport = localStorage.getItem('acb-test-report');
     if (acbTestReport) {
       this.dataString = JSON.parse(acbTestReport);
+    }
+  }
+
+  async addReportToDB(report: any) {
+    const reportsRef = collection(this.firestore, 'reports');
+    // this.inProgress = true;
+    try {
+      await addDoc(reportsRef, {report});
+      // this.inProgress = false;
+    } catch (error) {
+      // this.inProgress = false;
+      console.error(error);
     }
   }
 
@@ -101,7 +114,7 @@ export class AppComponent {
     const reader = new FileReader();
     const file = ev.target.files[0];
     this.inProgress = true;
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       const data = reader.result;
       workBook = XLSX.read(data, { type: 'binary' });
       jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
@@ -123,6 +136,7 @@ export class AppComponent {
       if (isExcelValid) {
         this.dataString = mainData;
         localStorage.setItem('acb-test-report', JSON.stringify(mainData));
+        // await this.addReportToDB(mainData);
         setTimeout(() => {
           this.inProgress = false;
         }, 500);
