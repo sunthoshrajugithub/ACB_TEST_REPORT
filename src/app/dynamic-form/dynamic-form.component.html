@@ -1,0 +1,70 @@
+<div
+  class="modal fade"
+  bsModal
+  #addNewReportModal="bs-modal"
+  [config]="{ backdrop: 'static', show: false }"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-static-name"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">
+          Add New <b>ACB</b> Test Report
+        </h4>
+        <button
+          type="button"
+          class="btn-close close pull-right"
+          aria-label="Close"
+          (click)="addNewReportModal.hide()"
+        >
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <ng-container *ngFor="let control of formData">
+            <ng-container [ngSwitch]="getInputType(control.type)">
+              <!-- ******************* input ******************* -->
+              <div [class]="getCssClasses(control.cssClasses)" *ngSwitchCase="'input'">
+                <label [for]="control.id" class="form-label">
+                  <span innerHtml="{{control.label}}"></span>
+                </label>
+                <input
+                  [type]="control.type"
+                  class="form-control"
+                  [id]="control.id"
+                />
+              </div>
+              <!-- ******************* input ******************* -->
+
+              <!-- ******************* select ******************* -->
+              <div [class]="getCssClasses(control.cssClasses)" *ngSwitchCase="'select'">
+                <label [for]="control.id" class="form-label">
+                  <span innerHtml="{{control.label}}"></span>
+                  </label>
+                <select class="form-control" [id]="control.id">
+                  <option *ngFor="let item of control.options">
+                    {{ item }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- ******************* heading ******************* -->
+              <h4 [class]="getCssClasses(control.cssClasses)" *ngSwitchCase="'heading'">
+                <span innerHtml="{{control.label}}"></span>
+              </h4>
+              <!-- ******************* heading ******************* -->
+
+            </ng-container>
+          </ng-container>
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

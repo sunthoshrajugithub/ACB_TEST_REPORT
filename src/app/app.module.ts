@@ -14,14 +14,30 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { ManageBreakerDetailsComponent } from './manage-breaker-details/manage-breaker-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DynamicFormComponent,
+    ManageBreakerDetailsComponent
   ],
   imports: [
     BrowserModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    ModalModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
@@ -31,7 +47,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideMessaging(() => getMessaging()),
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    BrowserAnimationsModule
   ],
   providers: [
     ScreenTrackingService,UserTrackingService

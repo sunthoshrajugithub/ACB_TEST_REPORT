@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~fontawesome-4.7/css/font-awesome.min.css";
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 
 body {
   font-size: 0.9rem;
@@ -74,3 +75,6 @@ body {
       margin: 30mm 45mm 30mm 45mm;
  }
 } */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

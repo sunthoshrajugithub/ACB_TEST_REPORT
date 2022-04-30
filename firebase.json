@@ -1,14 +1,6 @@
 {
   "hosting": [
     {
-      "public": "dist/acb-test-report",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    },
-    {
       "target": "acb-test-report",
       "public": "dist/acb-test-report",
       "ignore": [

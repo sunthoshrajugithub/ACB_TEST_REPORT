@@ -10,11 +10,19 @@
       type="file"
       (change)="onFileChange($event)"
     />
-    <a (click)="fileUpload.click()" class="btn btn-outline-light">Import</a>
+    <div>
+      <a (click)="fileUpload.click()" class="btn btn-outline-light me-3"
+        >Import</a
+      >
+      <a href="#summary" class="btn btn-outline-light me-3">Go to Summary</a>
+      <!-- <a class="btn btn-outline-light" (click)="addNewReportModal.show()"
+        >Add New</a
+      > -->
+    </div>
   </div>
 </nav>
 
-<div class="hide-on-print bg-transperant" style="height: 56px;"></div>
+<div class="hide-on-print bg-transperant" style="height: 65px"></div>
 
 <div class="mt-5 pt-5 w-100" *ngIf="dataString?.length === 0">
   <div class="alert alert-warning shadow-sm" role="alert">
@@ -50,9 +58,7 @@
 </div>
 
 <ng-container *ngFor="let acbData of dataString; let ind = index">
-  <!-- <h4 class="hide-on-print text-muted mt-3 text-center">{{ acbData["Customer "] }}</h4> -->
-  <div class="page mt-0">
-    <!-- <h6 class="hide-on-print text-center border-bottom pb-2">Page-1</h6> -->
+  <div class="page mt-0" [id]="acbData['id_no']">
     <div class="row mt-0">
       <!-- *************************** First Page *************************** -->
       <div class="d-flex justify-content-between px-4 mb-0">
@@ -68,11 +74,11 @@
         >
           <p class="m-0 p-0 fw-bold ps-2">
             Date :
-            <span class="text-dark">{{ acbData["Date - DD.MM.YYYY"] }}</span>
+            <span class="text-dark">{{ acbData["date"] }}</span>
           </p>
           <p class="m-0 p-0 fw-bold border-top-0 ps-2">
             Service :
-            <span class="text-dark">{{ acbData["Service"] }}</span>
+            <span class="text-dark">{{ acbData["service"] }}</span>
           </p>
         </div>
       </div>
@@ -92,11 +98,11 @@
         <div class="ps-5" style="height: 130px">
           <p class="m-0">
             <i class="fa fa-building me-2"></i>Company :
-            <span class="text-dark">{{ acbData["Customer "] }}</span>
+            <span class="text-dark">{{ acbData["customer"] }}</span>
           </p>
           <p class="m-0">
             <i class="fa fa-map-marker me-2"></i> :
-            <span class="text-dark">{{ acbData["Location"] }}</span>
+            <span class="text-dark">{{ acbData["location"] }}</span>
           </p>
         </div>
       </div>
@@ -104,15 +110,15 @@
         <div class="ps-5" style="height: 130px">
           <p class="m-0">
             <i class="fa fa-user-secret me-2"></i>
-            <span class="text-dark">{{ acbData["Contact Person"] }}</span>
+            <span class="text-dark">{{ acbData["contact_person"] }}</span>
           </p>
           <p class="m-0">
             <i class="fa fa-phone me-2"></i>
-            <span class="text-dark">{{ acbData["Mobile"] }}</span>
+            <span class="text-dark">{{ acbData["mobile"] }}</span>
           </p>
           <p class="m-0">
             <i class="fa fa-envelope me-2"></i>
-            <span class="text-dark">{{ acbData["E-Mail "] }}</span>
+            <span class="text-dark">{{ acbData["e_mail"] }}</span>
           </p>
         </div>
       </div>
@@ -125,44 +131,44 @@
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Series</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Model"] }}</span>
+            : <span class="text-dark">{{ acbData["model"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Model</p>
           <p class="m-0 p-0 mb-2" style="width: 230px">
-            : <span class="text-dark">{{ acbData["MLFB"] }}</span>
+            : <span class="text-dark">{{ acbData["mlfb"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Z Options</p>
           <p class="m-0 p-0 mb-2 col">
-            : <span class="text-dark">{{ acbData["Z-Options"] }}</span>
+            : <span class="text-dark">{{ acbData["z_options"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">ID No</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["ID no."] }}</span>
+            : <span class="text-dark">{{ acbData["id_no"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Rating</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{ acbData["Breaker Rating"] }}</span>
+            <span class="text-dark">{{ acbData["breaker_rating"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Size</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Size "] }}</span>
+            : <span class="text-dark">{{ acbData["size"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">No. of poles</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Pole"] }}</span>
+            : <span class="text-dark">{{ acbData["pole"] }}</span>
           </p>
         </div>
       </div>
@@ -170,31 +176,31 @@
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Type</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Breaker"] }}</span>
+            : <span class="text-dark">{{ acbData["breaker"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Release</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["ETU"] }}</span>
+            : <span class="text-dark">{{ acbData["etu"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Location</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Panel"] }}</span>
+            : <span class="text-dark">{{ acbData["panel"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Feeder</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Feeder Name"] }}</span>
+            : <span class="text-dark">{{ acbData["feeder_name"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">ETU Serial No</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["ETU Serial No"] }}</span>
+            : <span class="text-dark">{{ acbData["etu_serial_no"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -202,16 +208,14 @@
             Rating Plug <code>I<sub>n</sub></code>
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["In"] }}</span>
+            : <span class="text-dark">{{ acbData["in"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 140px">Last Serviced</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{
-              acbData["Last Serviced on - MM/YYYY"]
-            }}</span>
+            <span class="text-dark">{{ acbData["last_serviced_on"] }}</span>
           </p>
         </div>
       </div>
@@ -229,12 +233,12 @@
           <p class="m-0 p-0 mb-2 col">
             :
             <span class="text-dark"
-              >{{ acbData["L-Tripping IR ="] }} x {{ acbData["In"] }} =
+              >{{ acbData["l_tripping_ir"] }} x {{ acbData["in"] }} =
             </span>
             <span class="text-dark ms-1"
-              >{{ acbData["Long Time Current "] }} <code>AMPS</code></span
+              >{{ acbData["long_time_current"] }} <code>AMPS</code></span
             >
-            <span class="text-dark ms-5">Memory = {{ acbData["Memory"] }}</span>
+            <span class="text-dark ms-5">Memory = {{ acbData["memory"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -245,9 +249,7 @@
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{
-              acbData["L-Time-Lag tr (@6 x IR)"]
-            }}</span>
+            <span class="text-dark">{{ acbData["l_time_lag_tr"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -257,10 +259,10 @@
           <p class="m-0 p-0 mb-2" style="width: 175px">
             :
             <span class="text-dark"
-              >{{ acbData["Short Time Isd"] }} x {{ acbData["In"] }} =
+              >{{ acbData["short_time_isd"] }} x {{ acbData["In"] }} =
             </span>
             <span class="text-dark ms-1"
-              >{{ acbData["Short Time Current Isd"] }} <code>AMPS</code></span
+              >{{ acbData["short_time_current_isd"] }} <code>AMPS</code></span
             >
           </p>
         </div>
@@ -272,9 +274,7 @@
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{
-              acbData["Short Time Delay tsd (@12 x In)"]
-            }}</span>
+            <span class="text-dark">{{ acbData["short_time_delay_tsd"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -284,12 +284,11 @@
           <p class="m-0 p-0 mb-2 col">
             :
             <span class="text-dark"
-              >{{ acbData["I-tripping Ii ="] }} x {{ acbData["In"] }} =
+              >{{ acbData["i_tripping_ii"] }} x {{ acbData["In"] }} =
             </span>
             <span class="text-dark ms-1"
-              >{{ acbData["I-tripping Current Ii ="] }} <code>AMPS</code></span
+              >{{ acbData["i_tripping_current_ii"] }} <code>AMPS</code></span
             >
-            <!-- <span class="text-dark">{{ acbData["I-tripping Ii ="] }}</span> -->
           </p>
         </div>
         <div class="d-flex">
@@ -299,10 +298,10 @@
           <p class="m-0 p-0 mb-2 col">
             :
             <span class="text-dark me-5 pe-2">{{
-              acbData["N-Tripping IN"]
+              acbData["n_tripping_in"]
             }}</span>
             <span class="text-dark ms-5 ps-5"
-              >Protection = {{ acbData["I N"] }}</span
+              >Protection = {{ acbData["i_n"] }}</span
             >
           </p>
         </div>
@@ -312,19 +311,19 @@
               Ground-Fault - Tripping <code>I<sub>g</sub></code>
             </p>
             <p class="m-0 p-0 ps-3">
-              : <span class="text-dark">{{ acbData["G-CT"] }}</span>
+              : <span class="text-dark">{{ acbData["g_ct"] }}</span>
             </p>
             <p class="m-0 p-0 ms-2">
               TRIP :
-              <span class="text-dark">{{ acbData["G-Tripping Ig"] }}</span>
+              <span class="text-dark">{{ acbData["g_tripping_ig"] }}</span>
             </p>
             <p class="m-0 p-0 ms-2">
               ALARM :
-              <span class="text-dark">{{ acbData["G-Alarm Ig"] }}</span>
+              <span class="text-dark">{{ acbData["g_alarm_ig"] }}</span>
             </p>
             <p class="m-0 p-0 ms-2">
               Time Delay tg :
-              <span class="text-dark">{{ acbData["Time Delay tg TRIP"] }}</span>
+              <span class="text-dark">{{ acbData["time_delay_tg_trip"] }}</span>
             </p>
           </div>
         </div>
@@ -338,7 +337,7 @@
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 335px">ETU Status</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["ETU STATUS"] }}</span>
+            : <span class="text-dark">{{ acbData["etu_status"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -347,14 +346,14 @@
             <code>I<sub>r</sub></code> = 1.0xIn )
           </p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["CT Test"] }}</span>
+            : <span class="text-dark">{{ acbData["ct_test"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 335px">Trip Function Test</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{ acbData["Function Test"] }}</span>
+            <span class="text-dark">{{ acbData["function_test"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -364,7 +363,7 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Mechanical reclosing lockout"]
+              acbData["mechanical_reclosing_lockout"]
             }}</span>
           </p>
         </div>
@@ -404,7 +403,7 @@
       <!-- *************************** Second Page *************************** -->
       <div class="col-12 d-flex align-items-center d-flex flex-column">
         <p class="fw-bold w-100 text-end pt-3 pe-4">
-          ID No : {{ acbData["ID no."] }}
+          ID No : {{ acbData["id_no"] }}
         </p>
         <h4 class="mb-3 w-100 mb-3 alert alert-info py-2">
           <i class="fa fa-cogs me-2"></i>It's about mechanism
@@ -415,7 +414,7 @@
           <p class="m-0 p-0 mb-2" style="width: 175px">Mechanical Interlock</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{ acbData["Mechanical Interlock"] }}</span>
+            <span class="text-dark">{{ acbData["mechanical_interlock"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -425,7 +424,7 @@
           <p class="m-0 p-0 mb-2 col">
             :
             <span class="text-dark">{{
-              acbData["Contact Erosion Indicator"]
+              acbData["contact_erosion_indicator"]
             }}</span>
           </p>
         </div>
@@ -433,14 +432,14 @@
           <p class="m-0 p-0 mb-2" style="width: 175px">Racking handle</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
-            <span class="text-dark">{{ acbData["Racking Handle"] }}</span>
+            <span class="text-dark">{{ acbData["racking_handle"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 175px">Racking Mechanism</p>
           <p class="m-0 p-0 mb-2 col">
             :
-            <span class="text-dark">{{ acbData["Racking Mechanism "] }}</span>
+            <span class="text-dark">{{ acbData["racking_mechanism"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -450,47 +449,49 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Auxiliary Contact Block"]
+              acbData["auxiliary_contact_block"]
             }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 130px">Lamination Contacts</p>
-          <p class="m-0 p-0 mb-2 col">:<span class="text-dark">
-            {{ acbData["Lamination Contacts"] }}
-          </span></p>
+          <p class="m-0 p-0 mb-2 col">
+            :<span class="text-dark">
+              {{ acbData["lamination_contacts"] }}
+            </span>
+          </p>
         </div>
       </div>
       <div class="col-6 ps-5">
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 180px">Pole Sets</p>
           <p class="m-0 p-0 mb-2" style="width: 230px">
-            : <span class="text-dark">{{ acbData["Pole Set"] }}</span>
+            : <span class="text-dark">{{ acbData["pole_set"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 180px">Lubrication</p>
           <p class="m-0 p-0 mb-2" style="width: 230px">
-            : <span class="text-dark">{{ acbData["Lubrication"] }}</span>
+            : <span class="text-dark">{{ acbData["lubrication"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 180px">Contact Presuure</p>
           <p class="m-0 p-0 mb-2" style="width: 230px">
             :
-            <span class="text-dark">{{ acbData["Contact Pressure"] }}</span>
+            <span class="text-dark">{{ acbData["contact_pressure"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 180px">Arc Chutes</p>
           <p class="m-0 p-0 mb-2" style="width: 230px">
-            : <span class="text-dark">{{ acbData["Arc Chutes"] }}</span>
+            : <span class="text-dark">{{ acbData["arc_chutes"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 180px">Shutter</p>
           <p class="m-0 p-0 mb-2" style="width: 230px">
-            : <span class="text-dark">{{ acbData["Shutter"] }}</span>
+            : <span class="text-dark">{{ acbData["shutter"] }}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -498,7 +499,7 @@
           <p class="m-0 p-0 mb-2" style="width: 230px">
             :
             <span class="text-dark">{{
-              acbData["Guide Frame Terminals"]
+              acbData["guide_frame_terminals"]
             }}</span>
           </p>
         </div>
@@ -517,7 +518,7 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Spring Charging - Manual"]
+              acbData["spring_charging_manual"]
             }}</span>
           </p>
         </div>
@@ -528,7 +529,7 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Spring Charging - Motor"]
+              acbData["spring_charging_motor"]
             }}</span>
           </p>
         </div>
@@ -539,7 +540,7 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Breaker Operations - Manual"]
+              acbData["breaker_operations_manual"]
             }}</span>
           </p>
         </div>
@@ -550,7 +551,7 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Breaker Operations - Electrical"]
+              acbData["breaker_operations_electrical"]
             }}</span>
           </p>
         </div>
@@ -561,7 +562,7 @@
           <p class="m-0 p-0 mb-2" style="width: 140px">
             :
             <span class="text-dark">{{
-              acbData["Ready to Close Interlock"]
+              acbData["ready_to_close_interlock"]
             }}</span>
           </p>
         </div>
@@ -570,13 +571,13 @@
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 150px">Closing Coil</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Closing Coil"] }}</span>
+            : <span class="text-dark">{{ acbData["closing_coil"] }}</span>
           </p>
         </div>
         <div class="d-flex">
           <p class="m-0 p-0 mb-2" style="width: 150px">Shunt Coil</p>
           <p class="m-0 p-0 mb-2" style="width: 140px">
-            : <span class="text-dark">{{ acbData["Shunt Coil"] }}</span>
+            : <span class="text-dark">{{ acbData["shunt_coil"] }}</span>
           </p>
         </div>
         <div class="d-flex flex-column">
@@ -611,7 +612,7 @@
                 background-color: transparent;
                 left: 55%;
               "
-              [style.left.%]="acbData['Overall Breaker Healthiness'] * 100"
+              [style.left.%]="acbData['overall_breaker_healthiness'] * 100"
             >
               <label class="chart-label d-flex flex-column">
                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -623,7 +624,7 @@
             class="text-center text-danger fw-bold"
           >
             Overall Breaker Healthiness <br />
-            {{ acbData["Overall Breaker Healthiness"] * 100 | number }}%
+            {{ acbData["overall_breaker_healthiness"] * 100 | number }}%
           </p>
         </div>
       </div>
@@ -647,7 +648,7 @@
               <li class="list-group-item" style="height: 140px">
                 <p
                   class="m-0 p-0"
-                  *ngFor="let p of acbData['Mandatory Spares'].split(',')"
+                  *ngFor="let p of acbData['mandatory_spares']?.split(',')"
                 >
                   <span class="text-dark">{{ p }}</span>
                 </p>
@@ -668,7 +669,7 @@
               <li class="list-group-item" style="height: 140px">
                 <p
                   class="m-0 p-0"
-                  *ngFor="let p of acbData['Recommended Spares'].split(',')"
+                  *ngFor="let p of acbData['recommended_spares']?.split(',')"
                 >
                   <span class="text-dark">{{ p }}</span>
                 </p>
@@ -690,7 +691,7 @@
               <li class="list-group-item" style="height: 140px">
                 <p
                   class="m-0 p-0"
-                  *ngFor="let p of acbData['Comments'].split(',')"
+                  *ngFor="let p of acbData['comments']?.split(',')"
                 >
                   <span class="text-dark">{{ p }}</span>
                 </p>
@@ -708,7 +709,7 @@
               <li class="list-group-item" style="height: 140px">
                 <p
                   class="m-0 p-0"
-                  *ngFor="let p of acbData['Open Points'].split(',')"
+                  *ngFor="let p of acbData['open_points']?.split(',')"
                 >
                   <span class="text-dark">{{ p }}</span>
                 </p>
@@ -719,30 +720,169 @@
       </div>
       <div class="col-6">
         <p class="mt-4 mb-0">
-          <i class="fa fa-user-md ms-2"></i> Tested by:
-          <span class="text-dark">{{ acbData["Tested By"] }}</span>
+          <i class="fa fa-user-md ms-4"></i> Tested by:
+          <span class="text-dark">{{ acbData["tested_by"] }}</span>
         </p>
         <p class="mb-4">
-          <i class="fa fa-phone me-2 ms-2"></i>
-          <span class="text-dark">{{ acbData["Contact No: "] }}</span>
+          <i class="fa fa-phone me-2 ms-4"></i>
+          <span class="text-dark">{{ acbData["contact_no_1"] }}</span>
         </p>
       </div>
       <div class="col-6">
         <p class="mt-4 mb-0">
           <i class="fa fa-user-secret ms-2"></i> Reviewed by:<span
             class="text-dark"
-            >{{ acbData["Reviewed By"] }}</span
+            >{{ acbData["reviewed_by"] }}</span
           >
         </p>
         <p class="mb-4">
           <i class="fa fa-phone me-2 ms-2"></i>
-          <span class="text-dark">{{ acbData["Contact No: _1"] }}</span>
+          <span class="text-dark">{{ acbData["contact_no_2"] }}</span>
         </p>
       </div>
       <!-- *************************** Second Page *************************** -->
     </div>
   </div>
 </ng-container>
+
+<div
+  id="summary"
+  class="page mt-0"
+  style="height: auto !important; padding-bottom: 15px; margin-bottom: 15px"
+>
+  <div class="d-flex justify-content-between px-4 mb-0">
+    <img src="./assets/logo.png" class="mt-3 ms-3" style="width: 200px" />
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        align-content: flex-start;
+      "
+    >
+      <p class="m-0 p-0 fw-bold ps-2">
+        Date :
+        <span class="text-dark">{{ dataString[0]["date"] }}</span>
+      </p>
+    </div>
+  </div>
+  <div class="col-12 pt-1">
+    <h1
+      class="text-center"
+      style="background: #5be2ff; color: var(--bs-light); border-radius: 4px"
+    >
+      Summary
+    </h1>
+  </div>
+  <div class="col-12 pt-1 px-3">
+    <ul class="list-group rounded-0 text-dark shadow">
+      <li class="list-group-item list-group-item-success rounded-0">
+        <h4><span class="fa fa-check-circle me-2"></span>Cleared for usage</h4>
+        <hr />
+        <ol
+          *ngIf="breakerHealthinessThan(60, 100) as dd"
+          class="list-group list-group-numbered shadow rounded-0 my-3"
+        >
+          <h6
+            class="text-muted text-center m-0 p-0 py-2"
+            *ngIf="dd?.length === 0"
+          >
+            No Data to show
+          </h6>
+          <li
+            *ngFor="let opt of dd"
+            class="list-group-item rounded-0 list-group-item-success"
+          >
+            <a
+              style="color: #0f5132; text-decoration: none"
+              [href]="'#' + opt['id_no']"
+            >
+              {{ opt["panel"] }},&nbsp;{{ opt["feeder_name"] }},&nbsp;{{
+                opt["breaker_rating"]
+              }}
+              amps breaker
+            </a>
+          </li>
+        </ol>
+      </li>
+      <li class="list-group-item list-group-item-warning rounded-0">
+        <h4>
+          <span class="fa fa-exclamation-circle me-2"></span> Need attention
+        </h4>
+        <hr />
+        <ol
+          *ngIf="breakerHealthinessThan(30, 60) as dd"
+          class="list-group list-group-numbered shadow rounded-0 my-3"
+        >
+          <h6 class="text-muted text-center" *ngIf="dd?.length === 0">
+            No Data to show
+          </h6>
+          <li
+            *ngFor="let opt of dd"
+            class="list-group-item rounded-0 list-group-item-warning"
+          >
+            <a
+              style="color: #664d03; text-decoration: none"
+              [href]="'#' + opt['id_no']"
+            >
+              {{ opt["panel"] }}, &nbsp;{{ opt["feeder_name"] }},&nbsp;{{
+                opt["breaker_rating"]
+              }}
+              amps breaker
+            </a>
+          </li>
+        </ol>
+      </li>
+      <li class="list-group-item list-group-item-danger rounded-0">
+        <h4><span class="fa fa-times-circle me-2"></span>Doesn't Qualify</h4>
+        <hr />
+        <ol
+          *ngIf="breakerHealthinessThan(0, 30) as dd"
+          class="list-group list-group-numbered shadow rounded-0 my-3"
+        >
+          <h6 class="text-muted text-center" *ngIf="dd?.length === 0">
+            No Data to show
+          </h6>
+          <li
+            *ngFor="let opt of dd"
+            class="list-group-item rounded-0 list-group-item-danger"
+          >
+            <a
+              style="color: #842029; text-decoration: none"
+              [href]="'#' + opt['id_no']"
+            >
+              {{ opt["panel"] }},&nbsp;{{ opt["feeder_name"] }},&nbsp;{{
+                opt["breaker_rating"]
+              }}
+              amps breaker
+            </a>
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <ol class="list-group list-group">
+      <li class="list-group-item text-success">
+        <span class="fs-5 fa fa-check-circle me-2"></span>
+        <span>These breakers can be used safely</span>
+      </li>
+      <li class="list-group-item text-warning">
+        <span class="fs-5 fa fa-exclamation-circle me-2"></span>
+        <span
+          >Attention to be made while operating these breakers. Our
+          recommendations to be followed, else it can result in breaker damage
+          or injury.</span
+        >
+      </li>
+      <li class="list-group-item text-danger">
+        <span class="fs-5 fa fa-times-circle"></span>
+        Utmost attention to be made while operating these breakers.
+        Immediately our recommendations to be followed, else it can result in breaker damage
+        or injury.
+      </li>
+    </ol>
+  </div>
+</div>
 
 <div
   style="background-color: rgba(0, 0, 0, 0.3)"
@@ -758,87 +898,5 @@
     <h6 class="text-white">Please wait...</h6>
   </div>
 </div>
-
-<!-- <div
-  class="card fixed-bottom shadow mb-3 ms-auto d-none"
-  style="max-height:400px;overflow:auto;max-width:50%;"
->
-  <div class="card-body">
-    <pre>{{ acbData | json }}</pre>
-  </div>
-</div> -->
-
-<!-- {
-  "Sl no": 1,
-  "Date - DD.MM.YYYY": "01.03.2022",
-  "Service": "OTC",
-  "Customer ": "PharmaZell (Vizag)Private Limited,",
-  "Location": "Vizag",
-  "Contact Person": "Mr. KVV Subba Rao",
-  "Mobile": 9704123462,
-  "E-Mail ": "subbarao@pharmazell.com",
-  "Panel": "PMCC",
-  "Feeder Name": "Incomer ",
-  "Model": "3WL",
-  "MLFB": "3WL11102DG351AA2",
-  "ID no.": 6641280130013,
-  "Breaker Rating": "1250A",
-  "Size ": 1,
-  "Pole": "3 Pole",
-  "Breaker": "Drawout ",
-  "ETU": "ETU45B",
-  "Last Serviced on - MM/YYYY": 40969,
-  "In": 1000,
-  "L-Tripping IR =": 0.55,
-  "Long Time Current ": 550,
-  "L-Time-Lag tr (@6 x IR)": "14 Sec @I2t",
-  "Memory": "ON",
-  "Short Time Isd": 2,
-  "Short Time Current Isd": 2000,
-  "Short Time Delay tsd (@12 x In)": "20 ms",
-  "I-tripping Ii =": "4 x In",
-  "N-Tripping IN": "0.5 x In",
-  "I N": "ON",
-  "G-CT": "IG",
-  "G-Tripping Ig": "A= 100A",
-  "G-Alarm Ig": "A= 100A",
-  "Time Delay tg TRIP": "0.3 Sec",
-  "ETU STATUS": "OK",
-  "CT Test": "ALL OK",
-  "Function Test": "L-S-I-N-G-OK",
-  "Mechanical reclosing lockout": "OK",
-  "Trip Unit (N+G)": "ACTIVE ",
-  "Mechanical Interlock": "Castel lock - OK -A",
-  "Racking Handle": "OK",
-  "Position Indicator": "Not OK",
-  "Contact Erosion Indicator": "All Phases - OK",
-  "Arc Chutes": "All Phases - OK",
-  "Shutter": "OK",
-  "Lamination Contacts": "All Phases - OK",
-  "Guide Frame Terminals": "TOP R Phase - Defective",
-  "Contact Pressure": "OK",
-  "Pole Set": "R Phase - Defective",
-  "Lubrication": "Completed ",
-  "Spring Charging - Manual": "OK",
-  "Spring Charging - Motor": "220V AC/DC -OK",
-  "Undervoltage": "Not Available",
-  "Closing Coil": "220V AC/DC -OK",
-  "Shunt Coil": "220V AC/DC -OK",
-  "Ready to Close Interlock": "OK",
-  "Breaker Operations - Manual": "ON & OFF - OK",
-  "Breaker Operations - Electrical": "ON & OFF - OK",
-  "CRM Testing Done": "Yes",
-  "CRM Values - Before": "1. R Phase - \r\n2. Y Phase - \r\n3. B Phase - \r\n4. N Phase -",
-  "CRM Values - After": "1. R Phase - \r\n2. Y Phase - \r\n3. B Phase - \r\n4. N Phase -",
-  "Timing Testing Done": "Yes",
-  "__EMPTY": "1. R Phase - \r\n2. Y Phase - \r\n3. B Phase - \r\n4. N Phase -",
-  "Mandatory Spares": "Lamination Contacts ",
-  "Recommended Spares": "Spring Charging Motor",
-  "Comments": "Breaker Service and testing Completed - OK",
-  "Open Points": "R phase over temperature observed, to be rectified",
-  "Overall Breaker Healthiness": 0.55,
-  "Tested By": "D Satyanarayana",
-  "Contact No: ": 9985623105,
-  "Reviewed By": "M Santhosh",
-  "Contact No: _1": 9849343545
-} -->
+<!-- <app-dynamic-form #addNewReportModal [formData]="formData"></app-dynamic-form> -->
+<!-- <app-manage-breaker-details #addNewReportModal [formData]="formData"></app-manage-breaker-details> -->
