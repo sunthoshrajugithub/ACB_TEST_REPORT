@@ -57,6 +57,49 @@
   </div>
 </div>
 
+<div id="summary" class="page mt-0" *ngIf="dataString && dataString.length > 0">
+  <div
+    class="col-12 d-flex align-items-start flex-row justify-content-center"
+    style="height: calc(100% - 0px)"
+  >
+    <div class="col me-2" style="height: 100%; background-color: #cacfd5"></div>
+    <div
+      class="col-10 d-flex flex-column align-items-center flex-row justify-content-start pt-5"
+      style="height: 100%; background-color: #e9eaee"
+    >
+      <!-- <img src="./assets/logo.png" class="mt-5" style="width: 200px" />
+      -->
+      <h3 class="mb-4 text-dark">LT Breaker service report</h3>
+      <h5
+        style="width: 500px"
+        class="mb-1 d-flex flex-row fw-normal text-start text-dark"
+      >
+        <div style="width: 150px">Customer</div>
+        <div>{{ dataString[0]["customer"] }}</div>
+      </h5>
+      <h5
+        style="width: 500px"
+        class="mb-1 d-flex flex-row fw-normal text-start text-dark"
+      >
+        <div style="width: 150px">PO.No</div>
+        <div>{{ dataString[0]["cutomer_po"] }}</div>
+      </h5>
+      <h5
+        style="width: 500px"
+        class="mb-5 d-flex flex-row fw-normal text-start text-dark"
+      >
+        <div style="width: 150px">Our-Ref.No</div>
+        <div>{{ dataString[0]["our_ref"] }}</div>
+      </h5>
+      <div class="w-100">
+        <img src="./assets/home_bg.png" class="w-100" alt="Background Image" />
+      </div>
+      <div class="w-100 text-end pe-2">
+        <img src="./assets/logo.png" class="mt-5" style="width: 200px" />
+      </div>
+    </div>
+  </div>
+</div>
 <ng-container *ngFor="let acbData of dataString; let ind = index">
   <div class="page mt-0" [id]="acbData['id_no']">
     <div class="row mt-0">
@@ -769,7 +812,7 @@
   </div>
   <div class="col-12 pt-1">
     <h1
-      class="text-center"
+      class="text-center mb-5"
       style="background: #5be2ff; color: var(--bs-light); border-radius: 4px"
     >
       Summary
@@ -876,8 +919,8 @@
       </li>
       <li class="list-group-item text-danger">
         <span class="fs-5 fa fa-times-circle"></span>
-        Utmost attention to be made while operating these breakers.
-        Immediately our recommendations to be followed, else it can result in breaker damage
+        Utmost attention to be made while operating these breakers. Immediately
+        our recommendations to be followed, else it can result in breaker damage
         or injury.
       </li>
     </ol>

@@ -19,6 +19,8 @@ export class AppComponent {
     'sl_no',
     'date',
     'service',
+    'cutomer_po',
+    'our_ref',
     'customer',
     'location',
     'contact_person',
